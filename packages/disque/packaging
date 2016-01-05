@@ -1,0 +1,8 @@
+# abort script on any command that exits with a non zero value
+set -ex
+
+pushd disque/src
+  make
+  cp disque ${BOSH_INSTALL_TARGET}
+  cp disque-server ${BOSH_INSTALL_TARGET}
+popd

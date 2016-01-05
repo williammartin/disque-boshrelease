@@ -1,0 +1,3 @@
+[submodule "src/disque"]
+	path = src/disque
+	url = https://github.com/antirez/disque.git

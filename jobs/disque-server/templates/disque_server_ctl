@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -ex
+
+start_disque_server() {
+	local config
+	config=$1
+
+	/var/vcap/packages/disque/disque-server $config
+}
+
+stop_disque_server() {
+	kill $(cat /var/vcap/sys/run/disque.pid)
+}
+
+case "$1" in
+    start)
+        echo -n "Starting disque-server "
+        start_disque_server /var/vcap/jobs/disque-server/config/disque.conf
+        ;;
+    stop)
+        echo -n "Stopping disque-server "
+        stop_disque_server
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}" >&2
+        RETVAL=1
+        ;;
+esac

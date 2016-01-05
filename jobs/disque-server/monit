@@ -1,0 +1,5 @@
+check process disque-server
+  with pidfile  "/var/vcap/sys/run/disque.pid"
+  start program "/var/vcap/jobs/disque-server/bin/disque_server_ctl start" with timeout 30 seconds
+  stop  program "/var/vcap/jobs/disque-server/bin/disque_server_ctl stop"  with timeout 30 seconds
+  group vcap

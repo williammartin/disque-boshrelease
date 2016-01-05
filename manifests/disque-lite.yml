@@ -1,0 +1,55 @@
+---
+name: disque
+
+director_uuid: 11111111-1111-1111-1111-111111111111 
+
+releases:
+- name: disque
+  version: latest
+
+compilation:
+  cloud_properties:
+    name: random
+  network: disque
+  reuse_compilation_vms: true
+  workers: 1
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-180000
+  update_watch_time: 30000-180000
+  max_in_flight: 1
+
+networks:
+- name: disque
+  subnets:
+  - cloud_properties:
+      name: random
+    range: 10.244.3.44/30
+    reserved:
+    - 10.244.3.45
+    static:
+    - 10.244.3.46
+
+resource_pools:
+- cloud_properties:
+    ram: 1024
+    name: random
+  name: disque-small
+  network: disque
+  stemcell:
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    version: latest
+
+jobs:
+- name: disque-server
+  templates:
+  - name: disque-server
+    release: disque
+  instances: 1
+  resource_pool: disque-small
+  persistent_disk: 4096
+  networks:
+  - name: disque
+    static_ips:
+    - 10.244.3.46

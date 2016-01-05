@@ -1,0 +1,8 @@
+---
+name: disque-server
+templates:
+ disque_server_ctl: bin/disque_server_ctl
+ disque.conf: config/disque.conf
+
+packages:
+ - disque

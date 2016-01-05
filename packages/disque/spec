@@ -1,0 +1,7 @@
+---
+name: disque
+
+dependencies: []
+
+files:
+  - disque/**/*
