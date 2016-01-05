@@ -1,7 +1,7 @@
 ---
 name: disque
 
-director_uuid: 11111111-1111-1111-1111-111111111111 
+director_uuid: de7e613b-0f3a-47f8-8e94-cbd81af62746 
 
 releases:
 - name: disque
@@ -23,6 +23,11 @@ update:
 networks:
 - name: disque
   subnets:
+  - cloud_properties:
+      name: random
+    range: 10.244.3.40/30
+    reserved:
+    - 10.244.3.41
   - cloud_properties:
       name: random
     range: 10.244.3.44/30
